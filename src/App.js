@@ -3,7 +3,8 @@ import './App.css';
 import { Router } from '@reach/router';
 
 import Home from './pages/Home';
-import AppHeader from './components/basicLayout/AppHeader'
+import AppHeader from './components/basicLayout/AppHeader';
+import AppFooter from './components/basicLayout/AppFooter';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Router>
         <Home path="/" />
       </Router>
-      
+      <AppFooter />
     </div>
   );
 }
