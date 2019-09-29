@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Settings from './pages/Settings';
+import Editor from './pages/Editor';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <SignIn path="/login" />
         <SignUp path="/register" />
         <Settings path="/settings" />
+        <Editor path="/editor" />
       </Router>
       <AppFooter />
     </div>
