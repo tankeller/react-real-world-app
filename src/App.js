@@ -2,9 +2,10 @@ import React from 'react';
 import './App.css';
 import { Router } from '@reach/router';
 
-import Home from './pages/Home';
 import AppHeader from './components/basicLayout/AppHeader';
 import AppFooter from './components/basicLayout/AppFooter';
+import Home from './pages/Home';
+import SignIn from './pages/SignIn';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <AppHeader />
       <Router>
         <Home path="/" />
+        <SignIn path="login" />
       </Router>
       <AppFooter />
     </div>
