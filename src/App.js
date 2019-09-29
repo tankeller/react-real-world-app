@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import Settings from './pages/Settings';
 import Editor from './pages/Editor';
 import Article from './pages/Article';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Settings path="/settings" />
         <Editor path="/editor" />
         <Article path="/article/:article-slug" />
+        <Profile path="/profile/:username" />
       </Router>
       <AppFooter />
     </div>
