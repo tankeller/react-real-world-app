@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FeedToggle from '../components/feedToggle/FeedToggle';
+import Listing from '../components/listing/Listing';
 
 const Home = () => {
     return (
@@ -15,11 +15,9 @@ const Home = () => {
             <div class="container page">
                 <div class="row">
                     <div class="col-md-9">
-                        <FeedToggle />
+                        <Listing />
+
                     </div>
-
-
-
                 </div>
             </div>
         </div>
