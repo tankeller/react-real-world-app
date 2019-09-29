@@ -7,6 +7,7 @@ import AppFooter from './components/basicLayout/AppFooter';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Home path="/" />
         <SignIn path="/login" />
         <SignUp path="/register" />
+        <Settings path="/settings" />
       </Router>
       <AppFooter />
     </div>
