@@ -12,13 +12,8 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="container page">
-                <div className="row">
-                    <div className="col-md-9">
-                        <Listing />
-
-                    </div>
-                </div>
+            <div className="container page">                
+                    <Listing />
             </div>
         </div>
     )
