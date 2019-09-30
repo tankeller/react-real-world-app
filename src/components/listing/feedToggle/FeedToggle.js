@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import FeedContext from '../../../contexts/FeedContext';
+import React from 'react';
 
 const FeedToggle = ({ feed, setFeed }) => {
 
