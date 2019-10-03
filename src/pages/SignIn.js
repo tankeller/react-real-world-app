@@ -17,10 +17,7 @@ const SignIn = () => {
                             <Link to="/register">Need an account?</Link>
                         </p>
 
-                        {errorMessage.length ? 
                         <ErrorMessage message={errorMessage} />
-                        : null
-                        }
 
                         <form>
                             <fieldset className="form-group">
