@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
 import { Link } from '@reach/router';
+import axios from 'axios';
 
 import ErrorMessage from '../components/errorMessage/ErrorMessage';
 
 const SignIn = () => {
 
     const [errorMessage] = useState("");
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post(
+            "https://conduit.productionready.io/api/users/login",
+            {"user": {
+                "email": email, 
+                "password": password
+            }})
+        .then((response) => {console.log(response)})
+        .catch((error) => {console.log(error)})
+    }
 
     return (
         <div className="auth-page">
@@ -19,15 +35,23 @@ const SignIn = () => {
 
                         <ErrorMessage message={errorMessage} />
 
-                        <form>
+                        <form onSubmit={(event) => {handleSubmit(event)}}>
                             <fieldset className="form-group">
-                                <input className="form-control form-control-lg" type="text" placeholder="Email" />
+                                <input 
+                                    onChange={(event) => {setEmail(event.target.value)}}
+                                    className="form-control form-control-lg"
+                                    type="text"
+                                    placeholder="Email" />
                             </fieldset>
                             <fieldset className="form-group">
-                                <input className="form-control form-control-lg" type="password" placeholder="Password" />
+                                <input 
+                                    onChange={(event) => {setPassword(event.target.value)}}
+                                    className="form-control form-control-lg"
+                                    type="password"
+                                    placeholder="Password" />
                             </fieldset>
                             <button className="btn btn-lg btn-primary pull-xs-right">
-                                Sign up
+                                Sign in
                             </button>
                         </form>
                     </div>
