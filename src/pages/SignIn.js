@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from '@reach/router';
 import axios from 'axios';
 
 import ErrorMessage from '../components/errorMessage/ErrorMessage';
+import AuthContext from './../contexts/AuthContext';
 
 const SignIn = () => {
 
     const [errorMessage] = useState("");
 
+    // eslint-disable-next-line
+    const [user, setUser] = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,7 +23,9 @@ const SignIn = () => {
                 "email": email, 
                 "password": password
             }})
-        .then((response) => {console.log(response)})
+        .then((response) => {
+            setUser(response.data.user);
+        })
         .catch((error) => {console.log(error)})
     }
 
