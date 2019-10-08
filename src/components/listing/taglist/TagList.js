@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 
-import LoadingIndicator from '../../loadingIndicator/loadingIndicator';
+import LoadingIndicator from '../../loadingIndicator/LoadingIndicator';
 
 const TagList = ({feed, setFeed}) => {
 

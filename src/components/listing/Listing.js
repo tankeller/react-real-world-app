@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import FeedToggle from './feedToggle/FeedToggle';
 import ArticlePreview from './articlePreview/ArticlePreview';
-import LoadingIndicator from '../loadingIndicator/loadingIndicator';
+import LoadingIndicator from '../loadingIndicator/LoadingIndicator';
 import TagList from './taglist/TagList';
 
 const Listing = () => {
