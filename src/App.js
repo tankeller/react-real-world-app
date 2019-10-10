@@ -15,7 +15,7 @@ import AuthContext from './contexts/AuthContext';
 
 
 function App() {
-  const user = useState({name: 'Tan'});
+  const user = useState({});
 
   return (
     <div className="App">
