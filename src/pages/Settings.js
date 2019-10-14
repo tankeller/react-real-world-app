@@ -1,21 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react';
 
-import axios from 'axios';
 import AuthContext from '../contexts/AuthContext';
 import LoadingIndicator from '../components/loadingIndicator/LoadingIndicator';
+import useDataFetching from '../assets/hooks/useDataFetching';
 
 const Settings = () => {
-
     const [user] = useContext(AuthContext);
     const [profile, setProfile] = useState({});
+    const { loading, results, error } = useDataFetching(`https://conduit.productionready.io/api/profiles/${user.username}`);
 
-    useEffect(() => {
-        axios.get(`https://conduit.productionready.io/api/profiles/${user.username}`)
-        .then((response) => {
-            setProfile(response.data.profile);
-        })
-        .catch((error) => {console.log(error)});
-    }, [user.username]);
+    if (loading || error) {
+        return loading ? <LoadingIndicator>Settings</LoadingIndicator> : error;
+    }
+
+    //setProfile(results.profile);
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -23,19 +21,20 @@ const Settings = () => {
         console.log(profile);
     }
 
+    
+
     return(
         <div className="settings-page">
             <div className="container page">
                 <div className="row">
                     <div className="col-md-6 offset-md-3 col-xs-12">
                         <h1 className="text-xs-center">Your Settings</h1>
-                        {profile.username ? 
                             <form onSubmit={(event) => {handleSubmit(event)}} >
                                 <fieldset>
                                     <fieldset className="form-group">
                                         <input 
                                             onChange={(event) => {setProfile({...profile, image: event.target.value})}}
-                                            value={profile.image}
+                                            value={results.profile.image}
                                             className="form-control"
                                             type="text"
                                             placeholder="URL of profile picture" />
@@ -77,7 +76,6 @@ const Settings = () => {
                                     </button>
                                 </fieldset>
                             </form>
-                        : <LoadingIndicator>Profile</LoadingIndicator>}
                     </div>
                 </div>
             </div>
