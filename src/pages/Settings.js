@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import AuthContext from '../contexts/AuthContext';
 import LoadingIndicator from '../components/loadingIndicator/LoadingIndicator';
@@ -16,7 +16,7 @@ const Settings = () => {
 
     function handleSubmit(event) {
         event.preventDefault();
-        
+
         console.log(profile);
     }
 
