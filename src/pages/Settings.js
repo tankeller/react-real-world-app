@@ -6,18 +6,17 @@ import useDataFetching from '../assets/hooks/useDataFetching';
 
 const Settings = () => {
     const [user] = useContext(AuthContext);
-    const [profile, setProfile] = useState({});
     const { loading, results, error } = useDataFetching(`https://conduit.productionready.io/api/profiles/${user.username}`);
 
-    if (loading || error) {
+    if ((loading || error)) {
         return loading ? <LoadingIndicator>Settings</LoadingIndicator> : error;
     }
 
-    //setProfile(results.profile);
+    let { profile } = results;
 
     function handleSubmit(event) {
         event.preventDefault();
-
+        
         console.log(profile);
     }
 
@@ -33,15 +32,15 @@ const Settings = () => {
                                 <fieldset>
                                     <fieldset className="form-group">
                                         <input 
-                                            onChange={(event) => {setProfile({...profile, image: event.target.value})}}
-                                            value={results.profile.image}
+                                            onChange={(event) => {profile = {...profile, image: event.target.value}}}
+                                            value={profile.image}
                                             className="form-control"
                                             type="text"
                                             placeholder="URL of profile picture" />
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <input 
-                                            onChange={(event) => {setProfile({...profile, username: event.target.value})}}
+                                            onChange={(event) => {profile = {...profile, username: event.target.value}}}
                                             value={profile.username}
                                             className="form-control form-control-lg"
                                             type="text"
@@ -49,7 +48,7 @@ const Settings = () => {
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <textarea 
-                                            onChange={(event) => {setProfile({...profile, bio: event.target.value})}}
+                                            onChange={(event) => {profile = {...profile, bio: event.target.value}}}
                                             className="form-control form-control-lg"
                                             rows="8"
                                             placeholder="Short bio about you">
@@ -58,7 +57,7 @@ const Settings = () => {
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <input 
-                                            onChange={(event) => {setProfile({...profile, email: event.target.value})}}
+                                            onChange={(event) => {profile ={...profile, email: event.target.value}}}
                                             value={user.email}
                                             className="form-control form-control-lg"
                                             type="text"
@@ -66,7 +65,7 @@ const Settings = () => {
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <input 
-                                            onChange={(event) => {setProfile({...profile, password: event.target.value})}}
+                                            onChange={(event) => {profile = {...profile, password: event.target.value}}}
                                             className="form-control form-control-lg"
                                             type="password"
                                             placeholder="Password" />
