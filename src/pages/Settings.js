@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import AuthContext from '../contexts/AuthContext';
 import LoadingIndicator from '../components/loadingIndicator/LoadingIndicator';
 import useDataFetching from '../assets/hooks/useDataFetching';
+import axios from 'axios';
 
 const Settings = () => {
     const [user] = useContext(AuthContext);
@@ -16,11 +17,11 @@ const Settings = () => {
 
     function handleSubmit(event) {
         event.preventDefault();
-
-        console.log(profile);
+        axios.defaults.headers.common['Authorization'] = `Token ${user.token}`;
+        axios.put('https://conduit.productionready.io/api/user',{
+            user:{...profile}
+        });
     }
-
-    
 
     return(
         <div className="settings-page">
