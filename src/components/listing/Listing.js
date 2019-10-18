@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 
 import FeedToggle from './feedToggle/FeedToggle';
 import ArticlePreview from './articlePreview/ArticlePreview';
 import LoadingIndicator from '../loadingIndicator/LoadingIndicator';
 import TagList from './taglist/TagList';
+import useDataFetching from '../../assets/hooks/useDataFetching';
 
-const Listing = () => {
+const Listing = ({datasource}) => {
     const [feed, setFeed] = useState("global");
-    const [articles, setArticles] = useState();
 
-    useEffect(() => {
-        axios.get('https://conduit.productionready.io/api/articles')
-        .then(function (response) {
-            setArticles(response.data.articles);
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-    }, [feed])
+    const {loading, results, error } = useDataFetching(datasource);
+    
+    if ((loading || error)) {
+        return loading ? <LoadingIndicator>Settings</LoadingIndicator> : error;
+    }
+
+    let { articles } = results;
 
     return (
         <div className="row">
