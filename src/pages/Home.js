@@ -13,7 +13,7 @@ const Home = () => {
             </div>
 
             <div className="container page">                
-                    <Listing />
+                    <Listing datasource='https://conduit.productionready.io/api/articles'/>
             </div>
         </div>
     )
