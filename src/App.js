@@ -27,6 +27,7 @@ function App() {
           <SignUp path="/register" />
           <Settings path="/settings" />
           <Editor path="/editor" />
+          <Editor path="/editor/:slug" />
           <Article path="/article/:article-slug" />
           <Profile path="/profile/:username" />
         </Router>
