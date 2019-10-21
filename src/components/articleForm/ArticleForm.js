@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ArticleForm = ({ article }) => {
+    let newArticle = {};
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -13,7 +14,8 @@ const ArticleForm = ({ article }) => {
             <fieldset>
                 <fieldset className="form-group">
                     <input
-                        value={article ? article.title : null} 
+                        onChange={(event) => {newArticle = {...newArticle, title: event.target.value}}}
+                        value={article ? article.title : ""} 
                         type="text"
                         className="form-control form-control-lg"
                         placeholder="Article Title" 
@@ -21,7 +23,8 @@ const ArticleForm = ({ article }) => {
                 </fieldset>
                 <fieldset className="form-group">
                     <input 
-                        value={article ? article.description : null}
+                        onChange={(event) => {newArticle = {...newArticle, description: event.target.value}}}
+                        value={article ? article.description : ""}
                         type="text"
                         className="form-control"
                         placeholder="What's this article about?"
@@ -29,11 +32,12 @@ const ArticleForm = ({ article }) => {
                 </fieldset>
                 <fieldset className="form-group">
                     <textarea 
+                        onChange={(event) => {newArticle = {...newArticle, body: event.target.value}}}
+                        value={article ? article.body : ""}
                         className="form-control"
                         rows="8"
                         placeholder="Write your article (in markdown)">
-                            {article ? article.body : null}
-                        </textarea>
+                    </textarea>
                 </fieldset>
                 <fieldset className="form-group">
                     <input type="text" className="form-control" placeholder="Enter tags" />
@@ -49,7 +53,7 @@ const ArticleForm = ({ article }) => {
                             </span>
                         )
                     })
-                    : null}
+                    : ""}
                     </div>
                 </fieldset>
                 <button className="btn btn-lg pull-xs-right btn-primary" type="button">
