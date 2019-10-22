@@ -31,17 +31,21 @@ const AppHeader = () => {
                             </Link>
                         </li> 
                     : null }
+                    {user.id ?
+                        <li className="nav-item">
+                            <Link className="nav-link" to={`/profile/${user.username}`}>{user.username}</Link>
+                        </li>
+                    : null }
                     {user.id === undefined ?
                         <li className="nav-item">
                             <Link className="nav-link" to="/login">Sign in</Link>
                         </li> 
                     : null}
-                    
                     {user.id === undefined ?
                         <li className="nav-item">
                             <Link className="nav-link" to="/register">Sign up</Link>
                         </li>
-                    : null }    
+                    : null }
                 </ul>
             </div>
         </nav>
