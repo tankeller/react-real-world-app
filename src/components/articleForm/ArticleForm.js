@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import axios from 'axios';
+import { redirectTo } from '@reach/router'
+
+import AuthContext from '../../contexts/AuthContext';
 
 const ArticleForm = ({ article }) => {
     let newArticle = {};
+    const [user] = useContext(AuthContext);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        console.log(article);
+        axios.defaults.headers.common['Authorization'] = `Token ${user.token}`;
+        axios.post('https://conduit.productionready.io/api/articles', {
+            article: {...newArticle}
+        })
+        .then((response) => {
+            redirectTo(`/article/${response.data.article.slug}`);
+        })
+        .catch((error) => {console.log(error)});
     }
 
     return(
@@ -15,16 +26,16 @@ const ArticleForm = ({ article }) => {
                 <fieldset className="form-group">
                     <input
                         onChange={(event) => {newArticle = {...newArticle, title: event.target.value}}}
-                        value={article ? article.title : ""} 
+                        value={article ? article.title : undefined} 
                         type="text"
                         className="form-control form-control-lg"
-                        placeholder="Article Title" 
+                        placeholder="Article Title"
                         />
                 </fieldset>
                 <fieldset className="form-group">
                     <input 
                         onChange={(event) => {newArticle = {...newArticle, description: event.target.value}}}
-                        value={article ? article.description : ""}
+                        value={article ? article.description : undefined}
                         type="text"
                         className="form-control"
                         placeholder="What's this article about?"
@@ -33,7 +44,7 @@ const ArticleForm = ({ article }) => {
                 <fieldset className="form-group">
                     <textarea 
                         onChange={(event) => {newArticle = {...newArticle, body: event.target.value}}}
-                        value={article ? article.body : ""}
+                        value={article ? article.body : undefined}
                         className="form-control"
                         rows="8"
                         placeholder="Write your article (in markdown)">
@@ -56,7 +67,7 @@ const ArticleForm = ({ article }) => {
                     : ""}
                     </div>
                 </fieldset>
-                <button className="btn btn-lg pull-xs-right btn-primary" type="button">
+                <button className="btn btn-lg pull-xs-right btn-primary">
                     Publish Article
                 </button>
             </fieldset>
