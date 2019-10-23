@@ -5,7 +5,7 @@ const ArticleMeta = ({ article }) => {
     return (
         <div className="article-meta">
             <Link to={`/profile/${article.author.username}`}>
-                <img src="http://i.imgur.com/Qr71crq.jpg" alt="Author" />
+                <img src={article.author.image} alt="Author" />
             </Link>
             <div className="info">
                 <Link to={`/profile/${article.author.username}`} className="author">
