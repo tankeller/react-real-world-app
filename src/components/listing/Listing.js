@@ -7,7 +7,11 @@ import TagList from './taglist/TagList';
 import useDataFetching from '../../assets/hooks/useDataFetching';
 
 const Listing = ({datasource}) => {
-    const [feed, setFeed] = useState("global");
+    const [feed, setFeed] = useState('global');
+
+    if (feed !== 'global') {
+        datasource = `${datasource}?author=${feed}`;
+    }
 
     const {loading, results, error } = useDataFetching(datasource);
     
