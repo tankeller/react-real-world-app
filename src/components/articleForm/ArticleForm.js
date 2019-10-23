@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
-import { redirectTo } from '@reach/router'
+import { Redirect } from '@reach/router'
 
 import AuthContext from '../../contexts/AuthContext';
 
@@ -15,9 +15,13 @@ const ArticleForm = ({ article }) => {
             article: {...newArticle}
         })
         .then((response) => {
-            redirectTo(`/article/${response.data.article.slug}`);
+            console.log(response);
         })
         .catch((error) => {console.log(error)});
+    }
+
+    if (user.id) {
+        return <Redirect to="/" />;
     }
 
     return(
