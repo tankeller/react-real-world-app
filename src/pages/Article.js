@@ -6,13 +6,13 @@ import useDataFetching from '../assets/hooks/useDataFetching';
 import LoadingIndicator from '../components/loadingIndicator/LoadingIndicator';
 
 const Article = ({ slug }) => {
-    const { loadingArticle, articleData, error } = useDataFetching(`https://conduit.productionready.io/api/articles/${slug}`);
+    const { loading, results, error } = useDataFetching(`https://conduit.productionready.io/api/articles/${slug}`);
 
-    if (loadingArticle || error) {
-        return loadingArticle ? <LoadingIndicator>Article</LoadingIndicator> : error;
+    if (loading || error) {
+        return loading ? <LoadingIndicator>Article</LoadingIndicator> : error;
     }
 
-    let { article } = articleData.article;
+    let { article } = results;
 
     return (
         <div className="article-page">
