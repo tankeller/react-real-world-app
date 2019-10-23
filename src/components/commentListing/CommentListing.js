@@ -7,7 +7,7 @@ const CommentListing = () => {
                 <textarea className="form-control" placeholder="Write a comment..." rows="3"></textarea>
             </div>
             <div className="card-footer">
-                <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" />
+                <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" alt="user" />
                 <button className="btn btn-sm btn-primary">
                 Post Comment
                 </button>
