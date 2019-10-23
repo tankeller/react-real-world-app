@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 
-const ArticleMeta = (article) => {
+const ArticleMeta = ({ article }) => {
     return (
         <div className="article-meta">
             <Link to={`/profile/${article.author.username}`}>

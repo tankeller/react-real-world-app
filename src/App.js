@@ -28,7 +28,7 @@ function App() {
           <Settings path="/settings" />
           <Editor path="/editor" />
           <Editor path="/editor/:slug" />
-          <Article path="/article/:article-slug" />
+          <Article path="/article/:slug" />
           <Profile path="/profile/:username" />
         </Router>
         <AppFooter />
