@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import AuthContext from '../../../contexts/AuthContext';
 
 const FeedToggle = ({ feed, setFeed }) => {
-
-    //const [feed, setFeed] = useContext(FeedContext)
+    const [user] = useContext(AuthContext);
 
     return (
         <div className="feed-toggle">
@@ -14,13 +15,15 @@ const FeedToggle = ({ feed, setFeed }) => {
                             Global Feed
                     </button>
                 </li>
+                {user.id ? 
                 <li className="nav-item">
                     <button
-                        className={feed === 'local' ? "nav-link active" : "nav-link"}
-                        onClick={(e) => {setFeed('local')}}>
+                        className={feed === user.username ? "nav-link active" : "nav-link"}
+                        onClick={() => {setFeed(user.username)}}>
                             Your Feed
                     </button>
                 </li>
+                :null}
             </ul>
         </div>
     )
