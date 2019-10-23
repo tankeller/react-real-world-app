@@ -1,19 +1,18 @@
-import React, { useState, useContext } from 'react';
-import { Link } from '@reach/router';
+import React, { useState, useEffect } from 'react';
 
 import ArticleMeta from '../components/articleMeta/ArticleMeta';
-import AuthContext from '../contexts/AuthContext';
+import CommentListing from '../components/commentListing/CommentListing';
 import useDataFetching from '../assets/hooks/useDataFetching';
 import LoadingIndicator from '../components/loadingIndicator/LoadingIndicator';
 
 const Article = ({ slug }) => {
-    const { loading, results, error } = useDataFetching();
+    const { loadingArticle, articleData, error } = useDataFetching(`https://conduit.productionready.io/api/articles/${slug}`);
 
-    if (loading || error) {
-        return loading ? <LoadingIndicator>Article</LoadingIndicator> : error;
+    if (loadingArticle || error) {
+        return loadingArticle ? <LoadingIndicator>Article</LoadingIndicator> : error;
     }
 
-    let { article } = results.article;
+    let { article } = articleData.article;
 
     return (
         <div className="article-page">
@@ -43,49 +42,7 @@ const Article = ({ slug }) => {
 
                 <div className="row">
                     <div className="col-xs-12 col-md-8 offset-md-2">
-                        <form className="card comment-form">
-                            <div className="card-block">
-                                <textarea className="form-control" placeholder="Write a comment..." rows="3"></textarea>
-                            </div>
-                            <div className="card-footer">
-                                <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" />
-                                <button className="btn btn-sm btn-primary">
-                                Post Comment
-                                </button>
-                            </div>
-                        </form>
-                        
-                        <div className="card">
-                            <div className="card-block">
-                                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            </div>
-                            <div className="card-footer">
-                                <a href="" className="comment-author">
-                                <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" />
-                                </a>
-                                &nbsp;
-                                <a href="" className="comment-author">Jacob Schmidt</a>
-                                <span className="date-posted">Dec 29th</span>
-                            </div>
-                        </div>
-
-                        <div className="card">
-                            <div className="card-block">
-                                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            </div>
-                            <div className="card-footer">
-                                <a href="" className="comment-author">
-                                <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" />
-                                </a>
-                                &nbsp;
-                                <a href="" className="comment-author">Jacob Schmidt</a>
-                                <span className="date-posted">Dec 29th</span>
-                                <span className="mod-options">
-                                <i className="ion-edit"></i>
-                                <i className="ion-trash-a"></i>
-                                </span>
-                            </div>
-                        </div>
+                        <CommentListing slug={slug} />
                     </div>
                 </div>
             </div>
