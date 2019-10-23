@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import ArticleMeta from '../components/articleMeta/ArticleMeta';
 import CommentListing from '../components/commentListing/CommentListing';
@@ -18,7 +18,7 @@ const Article = ({ slug }) => {
         <div className="article-page">
             <div className="banner">
                 <div className="container">
-                    <h1>How to build webapps that scale</h1>
+                    <h1>{article.title}</h1>
                     <ArticleMeta article={article} />
                 </div>
             </div>
@@ -26,11 +26,7 @@ const Article = ({ slug }) => {
             <div className="container page">
                 <div className="row article-content">
                     <div className="col-md-12">
-                        <p>
-                        Web development technologies have evolved at an incredible clip over the past few years.
-                        </p>
-                        <h2 id="introducing-ionic">Introducing RealWorld.</h2>
-                        <p>It's a great solution for learning how other frameworks work.</p>
+                        {article.body}
                     </div>
                 </div>
 
