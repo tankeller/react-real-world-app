@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 
-const Comment = (comment ) => {
+const Comment = ({ comment }) => {
     const { author } = comment;
 
     return (
@@ -26,4 +26,4 @@ const Comment = (comment ) => {
     );
 }
 
-export default ArticleComment;
+export default Comment;
