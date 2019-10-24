@@ -9,7 +9,7 @@ const ArticlePreview = ({ article }) => {
         <div className="article-preview">
             <div className="article-meta">
                 <Link to={`/profile/${author.username}`}>
-                    <img src="http://i.imgur.com/Qr71crq.jpg" alt="Author" />
+                    <img src={author.image} alt="Author" />
                 </Link>
                 <div className="info">
                     <Link to={`/profile/${author.username}`} className="author">
