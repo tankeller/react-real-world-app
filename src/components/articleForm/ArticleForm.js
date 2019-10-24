@@ -20,7 +20,7 @@ const ArticleForm = ({ article }) => {
         .catch((error) => {console.log(error)});
     }
 
-    if (user.id) {
+    if (!user.id) {
         return <Redirect to="/" />;
     }
 
