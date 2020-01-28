@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { navigate } from '@reach/router';
 
 import AuthContext from '../contexts/AuthContext';
 import LoadingIndicator from '../components/loadingIndicator/LoadingIndicator';
@@ -6,12 +7,14 @@ import useDataFetching from '../assets/hooks/useDataFetching';
 import axios from 'axios';
 
 const Settings = () => {
-    const [user] = useContext(AuthContext);
+    const [user, setUser] = useContext(AuthContext);
     const { loading, results, error } = useDataFetching(`https://conduit.productionready.io/api/profiles/${user.username}`);
 
     if ((loading || error)) {
         return loading ? <LoadingIndicator>Settings</LoadingIndicator> : error;
     }
+
+    console.log('loading it all')
 
     let { profile } = results;
 
@@ -21,6 +24,12 @@ const Settings = () => {
         axios.put('https://conduit.productionready.io/api/user',{
             user:{...profile}
         });
+    }
+
+    function handleLogout(event) {
+        event.preventDefault();
+        setUser({});
+        navigate("/login");
     }
 
     return(
@@ -78,6 +87,10 @@ const Settings = () => {
                             </form>
                     </div>
                 </div>
+                <hr />
+                <button className="btn btn-outline-danger" type="button" onClick={handleLogout} >
+                    Or click here to logout.
+                </button>
             </div>
         </div>
     )
