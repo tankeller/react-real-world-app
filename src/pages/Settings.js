@@ -14,8 +14,6 @@ const Settings = () => {
         return loading ? <LoadingIndicator>Settings</LoadingIndicator> : error;
     }
 
-    console.log('loading it all')
-
     let { profile } = results;
 
     function handleSubmit(event) {
