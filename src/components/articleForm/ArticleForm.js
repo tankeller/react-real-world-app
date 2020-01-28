@@ -18,7 +18,7 @@ const ArticleForm = ({ article }) => {
         })
         .catch((error) => {console.log(error)});
     }
-
+    
     return(
         <form onSubmit={(event) => {handleSubmit(event)}} >
             <fieldset>
