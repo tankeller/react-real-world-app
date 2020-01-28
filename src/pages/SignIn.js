@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import axios from 'axios';
 
 import ErrorMessage from '../components/errorMessage/ErrorMessage';
@@ -24,6 +24,7 @@ const SignIn = () => {
             }})
         .then((response) => {
             setUser(response.data.user);
+            navigate("/");
         })
         .catch((error) => {console.log(error)})
     }
