@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
-import { Redirect } from '@reach/router'
 
 import AuthContext from '../../contexts/AuthContext';
 
@@ -18,10 +17,6 @@ const ArticleForm = ({ article }) => {
             console.log(response);
         })
         .catch((error) => {console.log(error)});
-    }
-
-    if (user.id) {
-        return <Redirect to="/" />;
     }
 
     return(

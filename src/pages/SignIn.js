@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link, Redirect } from '@reach/router';
+import { Link } from '@reach/router';
 import axios from 'axios';
 
 import ErrorMessage from '../components/errorMessage/ErrorMessage';
@@ -9,6 +9,7 @@ const SignIn = () => {
 
     const [errorMessage] = useState("");
 
+    // eslint-disable-next-line
     const [user, setUser] = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -25,10 +26,6 @@ const SignIn = () => {
             setUser(response.data.user);
         })
         .catch((error) => {console.log(error)})
-    }
-
-    if (user.id) {
-        return <Redirect noThrow to="/"/>;
     }
 
     return (

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link, Redirect } from '@reach/router';
+import { Link } from '@reach/router';
 import axios from 'axios';
 
 import ErrorMessage from '../components/errorMessage/ErrorMessage';
@@ -26,10 +26,6 @@ const SignUp = () => {
             setUser(response.data.user)
         })
         .catch((error) => {console.log(error)})
-    }
-
-    if (user.id) {
-        return <Redirect noThrow to="/" />;
     }
 
     return (
